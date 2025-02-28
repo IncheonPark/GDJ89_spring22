@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:import url="./templates/layout_header.jsp"></c:import>
-	
+	<img alt="" src="">
 	<div class="continer-fluid my-5">
 		<div class="row col-md-8 offset-md-2" style="min-height: 60vh">
 			<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">

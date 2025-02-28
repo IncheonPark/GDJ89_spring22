@@ -1,5 +1,6 @@
 package com.winter.app.users;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping(value = "/users/*")
@@ -22,8 +24,15 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="join", method = RequestMethod.POST)
-	public String join(UserDTO userDTO)throws Exception{
-		int result = userService.join(userDTO);
+	public String join(UserDTO userDTO, MultipartFile profile, HttpSession session)throws Exception{
+		System.out.println(profile.getContentType());
+		System.out.println(profile.getName());
+		System.out.println(profile.getOriginalFilename());
+		System.out.println(profile.getSize());
+		System.out.println(profile.isEmpty());
+		System.out.println(session.getServletContext());
+		
+		int result = userService.join(userDTO, profile, session.getServletContext());
 		return "redirect:/";
 	}
 	

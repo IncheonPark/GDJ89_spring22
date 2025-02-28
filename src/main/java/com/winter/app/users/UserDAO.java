@@ -10,6 +10,11 @@ public class UserDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE="com.winter.app.users.UserDAO.";
 	
+	public int upload(UserFileDTO userFileDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"upload", userFileDTO);
+				
+	}
+	
 	public int join(UserDTO userDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"join", userDTO);
 				

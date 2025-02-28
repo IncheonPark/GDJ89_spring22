@@ -5,6 +5,12 @@
   
   <mapper namespace="com.winter.app.users.UserDAO">
   
+  	<!-- 파일저장 -->
+  	<insert id="upload" parameterType="UserFileDTO">
+  		INSERT INTO PROFILE (USERNAME, FILENAME, OLDNAME)
+  		VALUES (#{userName}, #{fileName}, #{oldName})
+  	</insert>
+  
   	<insert id="join" parameterType="UserDTO">
   		INSERT INTO USERS
   		VALUES (#{userName}, #{password}, #{name}, #{phone}, #{email})
