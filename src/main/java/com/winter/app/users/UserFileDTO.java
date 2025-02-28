@@ -4,6 +4,7 @@ import com.winter.app.files.FileDTO;
 
 public class UserFileDTO extends FileDTO {
 	
+		
 	private String userName;
 
 	public String getUserName() {

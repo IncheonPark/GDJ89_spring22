@@ -74,6 +74,25 @@ public class UserController {
 		
 		
 	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public void update()throws Exception{
+		
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public String update(UserDTO userDTO, HttpSession session, MultipartFile profFile)throws Exception{
+		UserDTO dto = (UserDTO)session.getAttribute("user");
+		
+		userDTO.setUserName(dto.getUserName());
+		
+		int result = userService.update(userDTO, profFile, session);
+		
+		return "./mypage";
+		
+	}
+	
+	
 
 }
 

@@ -6,6 +6,7 @@ public class FileDTO {
 	private String oldName;
 	
 	public String getFileName() {
+	
 		return fileName;
 	}
 	public void setFileName(String fileName) {

@@ -24,6 +24,15 @@
   			${user.email}
 		</div>
 		
+		<div class="alert alert-primary" role="alert">
+			
+  			<img alt="" src="/resources/images/profiles/${not empty user.userFileDTO.fileName ? user.userFileDTO.fileName:'default.jpg'}">
+		</div>
+		
+		<div>
+			<a href="./update" class="btn btn-danger">수정</a>
+		</div>
+		
 	</div>
 </div>
 

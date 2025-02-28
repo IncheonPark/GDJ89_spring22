@@ -16,9 +16,45 @@
   		VALUES (#{userName}, #{password}, #{name}, #{phone}, #{email})
   	</insert>
   	
-  	<select id="getDetail" parameterType="UserDTO" resultType="UserDTO">
-  		SELECT * FROM USERS
+  	<select id="getDetail" parameterType="UserDTO" resultMap="getDetailResult">
+  		SELECT * 
+  		FROM USERS U
+  			 LEFT OUTER JOIN
+  			 PROFILE P
+  			 USING(USERNAME)
   		WHERE USERNAME=#{userName}
   	</select>
+  	
+  	<resultMap type="UserDTO" id="getDetailResult">
+  		<!-- PK  column: 컬럼명, property: setter의 이름 -->
+  		<id column="USERNAME" property="userName"/>
+  		<!-- 그외 나머지 column: 컬럼명, property: setter의 이름 -->
+  		<result column="PASSWORD" property="password"/>
+  		<result column="NAME" property="name"/>
+  		<result column="PHONE" property="phone"/>
+  		<result column="EMAIL" property="email"/>
+  		<!-- 1:1 -->
+  		<association property="userFileDTO" javaType="UserFileDTO">
+  			
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="OLDNAME" property="oldName"/>
+  		</association>
+  	
+  	</resultMap>
+  	
+  	<update id="update" parameterType="UserDTO">
+  		UPDATE USERS SET NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}
+  		WHERE USERNAME=#{userName}
+  	</update>
+  	
+  	<update id="updateFile" parameterType="UserFileDTO">
+  		UPDATE PROFILE SET FILENAME=#{fileName}, OLDNAME=#{oldName} 
+  		WHERE USERNAME=#{userName}
+  	</update>
+  	
+  	
+  	
+  	
+  	
 	
   </mapper>
