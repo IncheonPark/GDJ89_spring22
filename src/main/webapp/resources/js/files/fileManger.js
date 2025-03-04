@@ -19,7 +19,7 @@ add_file.addEventListener("click", function(){
 
     //--- div 추가가
     let div = document.createElement("div");
-
+    div.classList.add("input-group", "mb-3")
 
     //--- label 추가
     let child = document.createElement("label");
@@ -61,7 +61,7 @@ add_file.addEventListener("click", function(){
     child.type="button";
     
 
-    child.classList.add('btn', 'btn-outline-danger', 'del')
+    child.classList.add('input-group-text', 'btn', 'btn-outline-danger', 'del')
     div.append(child);
 
     files.append(div);
