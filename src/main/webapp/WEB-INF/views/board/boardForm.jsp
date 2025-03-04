@@ -28,24 +28,17 @@
 			<textarea class="form-control" name="boardContents" id="boardContents" rows="10">${dto.boardContents}</textarea>
 		   </div>
 		   		  	  	  
-		   <div class="mb-3">
-			<label for="profile" class="form-label">첨부파일</label>
-			<input type="file" class="form-control" name="attaches" id="profile">
+		   <div id="files" class="mb-3">
+
+
+			<button class="btn btn-success" type="button" id="add_file">파일추가</button>
 		   </div>
-		   <div class="mb-3">
-			<label for="profile" class="form-label">첨부파일</label>
-			<input type="file" class="form-control" name="attaches" id="profile">
-		   </div>
-		   <div class="mb-3">
-			<label for="profile" class="form-label">첨부파일</label>
-			<input type="file" class="form-control" name="attaches" id="profile">
-		   </div>	
 
 		  <button type="submit" class="btn btn-primary">글작성</button>
 		</form>	
 	</div>
 </div>
-
+<script src="/resources/js/files/fileManger.js"></script>
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>
