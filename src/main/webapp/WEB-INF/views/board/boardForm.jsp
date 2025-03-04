@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="/WEB-INF/views/templates/boot_css.jsp"></c:import>
+
 </head>
 <body>
 <c:import url="/WEB-INF/views/templates/layout_header.jsp"></c:import>
