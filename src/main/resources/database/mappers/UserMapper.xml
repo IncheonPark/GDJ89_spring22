@@ -33,7 +33,7 @@
   		<result column="NAME" property="name"/>
   		<result column="PHONE" property="phone"/>
   		<result column="EMAIL" property="email"/>
-  		<!-- 1:1 -->
+  		<!-- 1:1 property="setter의 이름" javaType="데이터타입"-->
   		<association property="userFileDTO" javaType="UserFileDTO">
   			
   			<result column="FILENAME" property="fileName"/>

@@ -15,7 +15,7 @@
 	<div class="row col-md-8 offset-md-2">
 		<!-- contents 내용 작성 -->
 		<h1>Notice Add</h1>
-		<form action="" method="post">
+		<form action="" method="post" enctype="multipart/form-data">
 		  <input type="hidden" name="boardNum" value="${dto.boardNum}">
 		  		  
 		  <div class="mb-3">
@@ -26,8 +26,20 @@
 		  <div class="mb-3">
 			<label for="boardContents" class="form-label">Contents</label>
 			<textarea class="form-control" name="boardContents" id="boardContents" rows="10">${dto.boardContents}</textarea>
-		   </div>		  	  	  
-
+		   </div>
+		   		  	  	  
+		   <div class="mb-3">
+			<label for="profile" class="form-label">첨부파일</label>
+			<input type="file" class="form-control" name="attaches" id="profile">
+		   </div>
+		   <div class="mb-3">
+			<label for="profile" class="form-label">첨부파일</label>
+			<input type="file" class="form-control" name="attaches" id="profile">
+		   </div>
+		   <div class="mb-3">
+			<label for="profile" class="form-label">첨부파일</label>
+			<input type="file" class="form-control" name="attaches" id="profile">
+		   </div>	
 
 		  <button type="submit" class="btn btn-primary">글작성</button>
 		</form>	

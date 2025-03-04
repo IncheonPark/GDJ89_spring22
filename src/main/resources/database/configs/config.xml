@@ -10,10 +10,12 @@
 		<typeAlias type="com.winter.app.users.UserFileDTO" alias="UserFileDTO"/>
 		<typeAlias type="com.winter.app.products.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.winter.app.boards.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="com.winter.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.winter.app.boards.notice.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.winter.app.boards.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.winter.app.pages.Pager" alias="Pager"/>
 		
 		<typeAlias type="java.util.Map" alias="Map"/>
+		<typeAlias type="java.util.List" alias="List"/>
 	</typeAliases>
 </configuration>

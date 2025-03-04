@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.boards.BoardDTO;
 import com.winter.app.pages.Pager;
@@ -24,7 +25,7 @@ public class NoticeController {
 	
 	@ModelAttribute("kind")
 	public String getKind() {
-		return "Notice";
+		return "notice";
 	}
 	
 	@RequestMapping(value="list", method = RequestMethod.GET)
@@ -64,11 +65,11 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public String add(NoticeDTO boardDTO, HttpSession session)throws Exception{
+	public String add(NoticeDTO boardDTO, HttpSession session, MultipartFile [] attaches)throws Exception{
 		
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		boardDTO.setUserName(userDTO.getUserName());
-		int result = noticeService.add(boardDTO);
+		int result = noticeService.add(boardDTO, session, attaches);
 		
 		return "redirect:./list";
 	}

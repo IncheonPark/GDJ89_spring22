@@ -32,7 +32,7 @@ public class FileManger {
 		
 		
 		//3. HDD에 저장
-		//1) transferTo
+		//1) MultipartFile class의 transferTo 메서드
 		file = new File(file, f);
 //		profile.transferTo(file);
 		

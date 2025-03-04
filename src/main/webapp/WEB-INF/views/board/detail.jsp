@@ -36,6 +36,13 @@
 
 		
 		</table>
+		
+		<div>
+			<c:forEach items="${dto.boardFileDTOs}" var="f">
+				<a href="/resources/images/${kind}/${f.fileName}">${f.oldName}</a>
+			</c:forEach>
+		</div>
+		
 		<div class="alert alert-primary" role="alert" style="min-height: 60vh">
 		  ${dto.boardContents}
 		</div>
