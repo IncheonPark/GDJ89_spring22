@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.boards.BoardDTO;
 import com.winter.app.boards.notice.NoticeDTO;
@@ -26,7 +27,7 @@ public class QnaController {
 	
 	@ModelAttribute("kind")
 	public String getKind() {
-		return "Qna";
+		return "qna";
 	}
 	
 	
@@ -67,11 +68,11 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="add", method = RequestMethod.POST)
-	public String add(QnaDTO boardDTO, HttpSession session)throws Exception{
+	public String add(QnaDTO boardDTO, HttpSession session, MultipartFile [] attaches)throws Exception{
 		
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		boardDTO.setUserName(userDTO.getUserName());
-		int result = qnaService.add(boardDTO);
+		int result = qnaService.add(boardDTO, session, attaches);
 		
 		return "redirect:./list";
 	}
