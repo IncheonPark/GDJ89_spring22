@@ -1,7 +1,10 @@
 const add_file = document.getElementById("add_file");
 const files = document.getElementById("files");
 const del = document.getElementsByClassName("del");
-let count=0;
+
+let count=files.getAttribute("data-files-size");
+
+
 
 
 files.addEventListener('click', function(e){

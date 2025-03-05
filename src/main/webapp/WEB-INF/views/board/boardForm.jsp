@@ -29,7 +29,7 @@
 			<textarea class="form-control" name="boardContents" id="boardContents" rows="10">${dto.boardContents}</textarea>
 		   </div>
 		   		  	  	  
-		   <div id="files" class="mb-3">
+		   <div id="files" class="mb-3" data-files-size="${dto.boardFileDTOs.size()}">
 
 			<div class="mb-3">
 			<button class="btn btn-success" type="button" id="add_file">파일추가</button>
