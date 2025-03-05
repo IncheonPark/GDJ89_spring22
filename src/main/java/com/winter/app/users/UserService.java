@@ -37,6 +37,10 @@ public class UserService {
 		return result;
 	}
 	
+	public UserDTO check(UserDTO userDTO) throws Exception{
+		return userDAO.getDetail(userDTO);
+	}
+	
 	public UserDTO login(UserDTO userDTO)throws Exception{
 		//result는 username(id) 만 비교 함
 		UserDTO result = userDAO.getDetail(userDTO);

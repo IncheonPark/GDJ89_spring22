@@ -5,14 +5,30 @@
 const up = document.getElementById("up");
 const del = document.getElementById("del");
 const frm = document.getElementById("frm");
+const addCart= document.getElementById("addCart")
 
-up.addEventListener("click", function(){
-    console.log(frm.method) //GET
-    console.log(frm.getAttribute("method"))//null
-    console.log("수정")
-    frm.action="./update";
-    frm.submit();
+addCart.addEventListener("click", ()=>{
+    let num = addCart.getAttribute("data-product-num")
+    let s = `hello ${num}`
+
+    fetch(`../users/addCart?productNum=${num}`)
+    .then(res => res.text())
+    .then(res => {
+
+    })
 })
+
+try {
+    up.addEventListener("click", function(){
+        console.log(frm.method) //GET
+        console.log(frm.getAttribute("method"))//null
+        console.log("수정")
+        frm.action="./update";
+        frm.submit();
+    })
+} catch (error) {
+    
+}
 
 del.addEventListener("click", function(){
     console.log(frm.action); //url

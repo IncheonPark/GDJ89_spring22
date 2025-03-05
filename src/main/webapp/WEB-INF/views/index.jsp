@@ -36,9 +36,36 @@
 			</div>	
 		</div>
 	</div>
+
+	<button id="btn">CLICK</button>
 	
 <c:import url="./templates/layout_footer.jsp"></c:import>
 
 <c:import url="./templates/boot_js.jsp"></c:import>
+
+<script>
+	const btn = document.getElementById("btn");
+	btn.addEventListener("click", function(){
+		console.log("start")
+		let num=1;
+		fetch("./notice/list")
+		.then(result =>{
+			return result.text(); //응답 데이터가 text 형태 일때 꺼내는 메서드
+			//result.json(); //응답 데이터가 json 형태 일때 꺼내는 메서드
+		})
+		.then(result => {
+			console.log(result);
+			num=num+1;
+		})
+		.catch((e)=>{
+
+		})
+		.finally(()=>{
+			
+		});
+		console.log(num);
+	})
+
+</script>
 </body>
 </html>

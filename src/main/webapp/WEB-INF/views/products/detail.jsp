@@ -25,6 +25,7 @@
 				<button type="button" id="up">수정</button>
 				<button type="button" id="del">삭제</button>
 			</form>
+			<button type="button" id="addCart" data-product-num="${dto.productNum}">장바구니</button>
 
 		</div>
 

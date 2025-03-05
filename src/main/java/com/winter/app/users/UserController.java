@@ -17,6 +17,26 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	// /users/check
+	// check
+	@RequestMapping(value = "check", method = RequestMethod.GET)
+	public String check(UserDTO userDTO, Model model)throws Exception{
+		System.out.println("ID 중복 체크");
+		System.out.println(userDTO.getUserName());
+		userDTO = userService.check(userDTO);
+		//userDTO == null 이면 가입 가능 중복 X
+		//userDTO != null 이면 가입 불가 중복 O
+		int result=0;//중복 0
+		if(userDTO==null) {
+			result = 1;//중복 X
+		}
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
+		
+	}
+	
 	
 	@RequestMapping(value="join", method = RequestMethod.GET)
 	public void join()throws Exception{
