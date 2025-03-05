@@ -31,8 +31,9 @@
 		   		  	  	  
 		   <div id="files" class="mb-3">
 
-
+			<div class="mb-3">
 			<button class="btn btn-success" type="button" id="add_file">파일추가</button>
+			</div>
 		   </div>
 
 		  <button type="submit" class="btn btn-primary">글작성</button>

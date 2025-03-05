@@ -1,15 +1,17 @@
 const add_file = document.getElementById("add_file");
 const files = document.getElementById("files");
 const del = document.getElementsByClassName("del");
-
-for(let d of del){
-    d.addEventListener("click", function(){
-        console.log("del");
-    })
-}
-
-
 let count=0;
+
+
+files.addEventListener('click', function(e){
+    if(e.target.classList.contains('del')){
+        e.target.parentElement.remove();
+        count--;
+    }
+})
+
+
 
 add_file.addEventListener("click", function(){
     if(count>4){
@@ -68,3 +70,5 @@ add_file.addEventListener("click", function(){
 
     count++;
 })
+
+//
