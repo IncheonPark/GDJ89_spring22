@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -141,6 +142,20 @@ public class UserController {
 		
 		model.addAttribute("carts", list);
 		model.addAttribute("pager", pager);
+		
+	}
+	
+	@RequestMapping(value = "cartDelete", method = RequestMethod.GET)
+	public String cartDelete(Long [] productNum, HttpSession session, Model model)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user", session.getAttribute("user"));
+		map.put("products", productNum);
+		
+		int result = userService.cartDelete(map);
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
 		
 	}
 	

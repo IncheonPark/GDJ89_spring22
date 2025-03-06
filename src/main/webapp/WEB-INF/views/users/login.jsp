@@ -18,12 +18,12 @@
 		<form id="login_form" action="./login" method="post">
 		  <div class="mb-3">
 		    <label for="userName" class="form-label">USERNAME</label>
-		    <input type="text" name="userName" placeholder="ID" class="form-control" id="userName">
+		    <input type="text" value="id" name="userName" placeholder="ID" class="form-control" id="userName">
 		  </div>
 
 		  <div class="mb-3">
 		    <label for="password" class="form-label">PASSWORD</label>
-		    <input type="password" name="password" class="form-control" id="password">
+		    <input type="password" value="pw" name="password" class="form-control" id="password">
 		  </div>	
 
 		  <button type="button" class="btn btn-primary" id="login_button">로그인</button>

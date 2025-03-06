@@ -49,6 +49,10 @@ public class UserDAO {
 	public List<ProductDTO> getCartList(Map<String, Object> map)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getCartList", map);
 	}
+	
+	public int cartDelete(Map<String, Object> map)throws Exception{
+		return sqlSession.delete(NAMESPACE+"cartDelete", map);
+	}
 
 }
 

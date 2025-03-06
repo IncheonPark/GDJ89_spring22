@@ -85,9 +85,19 @@
   		
   	</select>
   	
+  	<!-- map user:UserDTO, products, Long [] -->
+  	<delete id="cartDelete" parameterType="Map">
+  		DELETE CARTS
+  		WHERE 
+  			  USERNAME=#{user.userName}
+  			  AND
+  			  PRODUCTNUM IN
+  			  <foreach item="item" collection="products"  open="(" separator="," close=")">
+  			  	#{item}
+  			  </foreach>
+  	</delete>
   	
-  	
-  	
+ 
   	
   	
   	

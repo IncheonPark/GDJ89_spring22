@@ -24,6 +24,14 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th> 
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" value="" id="checkAll">
+							<label class="form-check-label" for="checkAll">
+							  전체선택
+							</label>
+						  </div>
+					</th>
 					<th>Num</th>
 					<th>상품명</th>
 					<th>이자율</th>
@@ -31,9 +39,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${carts}" var="v">
-				<tr>
-					<td>${v.productNum}</td>
+				<c:forEach items="${carts}" var="v" varStatus="i">
+				<tr id="${v.productNum}">
+					<td>
+						<div class="form-check">
+							<input value="${v.productNum}"  data-pn="pn${i.count}" class="form-check-input checks" type="checkbox" value="">
+						</div>
+					</td>
+					<td id="pn${i.count}">${v.productNum}</td>
 					<td><a href="../products/detail?productNum=${v.productNum}">${v.productName}</a></td>
 					<td>${v.productRate}</td>
 					<td>${v.productDate}</td>
@@ -61,6 +74,10 @@
 		  </ul>
 		</nav>
 		
+		<div>
+			<button id="cart-delete" class="btn btn-outline-danger">선택삭제</button>
+			<button class="btn btn-outline-success">상품가입</button>
+		</div>
 
 	</div>
 </div>
@@ -68,5 +85,6 @@
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 <script src="/resources/js/list.js"></script>
+<script src="/resources/js/users/carts.js"></script>
 </body>
 </html>
