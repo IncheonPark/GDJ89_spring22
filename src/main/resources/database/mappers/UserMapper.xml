@@ -52,6 +52,45 @@
   		WHERE USERNAME=#{userName}
   	</update>
   	
+  	<insert id="addCart" parameterType="Map">
+  		INSERT INTO CARTS (USERNAME, PRODUCTNUM)
+  		VALUES (#{user.userName}, #{product.productNum})
+  	</insert>
+  	
+  	<select id="getCartTotalCount" parameterType="UserDTO" resultType="Long">
+  		SELECT COUNT(USERNAME) FROM CARTS
+  		WHERE USERNAME=#{userName}
+  	</select>
+  	
+  	<select id="getCartList" parameterType="Map" resultType="ProductDTO">
+  		SELECT * FROM
+  		(
+  			SELECT ROWNUM R,C.*
+	  		FROM (
+	  				SELECT PRODUCTNUM, PRODUCTNAME,PRODUCTRATE, PRODUCTDATE 
+	  				FROM PRODUCTS
+	  				WHERE PRODUCTNUM
+	  				  In (SELECT PRODUCTNUM FROM CARTS WHERE USERNAME=#{user.userName})
+	  				ORDER BY PRODUCTNUM DESC
+	  			 )C
+  		)
+  		WHERE R BETWEEN #{pager.startNum} AND #{pager.endNum}
+<!--   		
+		SELECT PRODUCTNUM, PRODUCTNAME,PRODUCTRATE, PRODUCTDATE
+  		FROM CARTS C
+  			 NATURAL JOIN
+  			 PRODUCTS P
+  		WHERE USERNAME=#{userName}
+ --> 
+  		
+  	</select>
+  	
+  	
+  	
+  	
+  	
+  	
+  	
   	
   	
   	

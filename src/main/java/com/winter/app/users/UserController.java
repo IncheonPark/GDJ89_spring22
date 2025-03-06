@@ -1,14 +1,23 @@
 package com.winter.app.users;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.winter.app.pages.Pager;
+import com.winter.app.products.ProductDTO;
 
 @Controller
 @RequestMapping(value = "/users/*")
@@ -109,6 +118,29 @@ public class UserController {
 		int result = userService.update(userDTO, profFile, session);
 		
 		return "./mypage";
+		
+	}
+	
+	@RequestMapping(value = "addCart", method = RequestMethod.GET)
+	public String addCart(ProductDTO productDTO, HttpSession session, Model model)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("product", productDTO);
+		map.put("user", session.getAttribute("user"));
+		int result = userService.addCart(map);
+		model.addAttribute("result", result);
+		
+		
+		return "commons/ajaxResult";
+		
+	}
+	
+	@RequestMapping(value="carts", method = RequestMethod.GET)
+	public void getCartList(Pager pager, HttpSession session, Model model)throws Exception{
+		
+		List<ProductDTO> list = userService.getCartList(pager,(UserDTO)session.getAttribute("user"));
+		
+		model.addAttribute("carts", list);
+		model.addAttribute("pager", pager);
 		
 	}
 	

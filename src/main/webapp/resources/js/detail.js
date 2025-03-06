@@ -14,7 +14,16 @@ addCart.addEventListener("click", ()=>{
     fetch(`../users/addCart?productNum=${num}`)
     .then(res => res.text())
     .then(res => {
-
+        if(res.trim()=="1"){   //parseInt("1"), "1"+1
+            let r = confirm("장바구니로 이동??")
+            if(r){
+                location.href='../users/carts';
+            }
+        }else {
+            alert('장바구니 등록 실패')
+        }
+    }).catch(r=>{
+        alert('장바구니 등록 실패')
     })
 })
 

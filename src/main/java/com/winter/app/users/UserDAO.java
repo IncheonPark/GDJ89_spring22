@@ -1,8 +1,13 @@
 package com.winter.app.users;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.winter.app.products.ProductDTO;
 
 @Repository
 public class UserDAO {
@@ -32,5 +37,24 @@ public class UserDAO {
 	public int updateFile(UserFileDTO userFileDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"updateFile", userFileDTO);
 	}
+	
+	public int addCart(Map<String, Object> map)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addCart", map);
+	}
+	
+	public Long getCartTotalCount(Object userDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCartTotalCount", userDTO);
+	}
+	
+	public List<ProductDTO> getCartList(Map<String, Object> map)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getCartList", map);
+	}
 
 }
+
+
+
+
+
+
+
