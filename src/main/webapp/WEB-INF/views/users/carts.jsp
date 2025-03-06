@@ -76,7 +76,7 @@
 		
 		<div>
 			<button id="cart-delete" class="btn btn-outline-danger">선택삭제</button>
-			<button class="btn btn-outline-success">상품가입</button>
+			<button id="product_join" class="btn btn-outline-success">상품가입</button>
 		</div>
 
 	</div>

@@ -1,5 +1,6 @@
 package com.winter.app.products;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +14,11 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 
+	private static Long count=0L;
 	
 	//detail
 	public ProductDTO getDetail(ProductDTO productDTO)throws Exception{
+
 		return productDAO.getDetail(productDTO);
 	}
 	

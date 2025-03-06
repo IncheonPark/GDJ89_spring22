@@ -3,6 +3,23 @@
 const checkAll = document.getElementById("checkAll");
 const checks = document.getElementsByClassName("checks");
 const cart_delete = document.querySelector("#cart-delete")
+const product_join = document.getElementById("product_join");
+
+product_join.addEventListener('click',()=>{
+    let params = new URLSearchParams();
+    for(let c of checks){
+        if(c.checked){
+           params.append("productNum", c.value);
+        }
+    }
+
+    //let url ="../accounts/add"+parmas.toString();
+    let url = `../accounts/add?${params.toString()}`;
+    
+    fetch(url)
+    //.then()
+
+})
 
 
 cart_delete.addEventListener('click', ()=>{
