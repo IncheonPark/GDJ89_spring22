@@ -13,11 +13,33 @@ product_join.addEventListener('click',()=>{
         }
     }
 
+    //let f = new FormData()//form 객체 생성
+   
+
     //let url ="../accounts/add"+parmas.toString();
-    let url = `../accounts/add?${params.toString()}`;
-    
-    fetch(url)
-    //.then()
+    //let url = `../accounts/add?${params.toString()}`;
+
+
+    //enctype=multipart/form-data
+    fetch("../accounts/add", {
+        method:"POST",
+        headers:{
+            'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        body:params
+    })
+        //promise
+        .then(r=> r.text())
+        .then(r=>{
+            console.log(r);
+            if(parseInt(r.trim()) > 0){
+                alert('가입성공')
+                location.reload();
+            }
+        })
+        .catch(e=>{
+            alert('관리자에게 문의의')
+        })
 
 })
 

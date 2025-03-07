@@ -6,6 +6,8 @@
 <!-- mybatis 설정 -->
 <configuration>
 	<typeAliases>
+	
+		<typeAlias type="com.winter.app.accounts.AccountDTO" alias="AccountDTO"/>
 		<typeAlias type="com.winter.app.users.UserDTO" alias="UserDTO"/>
 		<typeAlias type="com.winter.app.users.UserFileDTO" alias="UserFileDTO"/>
 		<typeAlias type="com.winter.app.products.ProductDTO" alias="ProductDTO"/>
