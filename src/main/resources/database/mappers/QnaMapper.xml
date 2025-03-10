@@ -82,7 +82,17 @@
   		WHERE BOARDNUM=#{boardNum}
   	</update>
   	
+  	 <select id="getFileDetail" resultType="BoardFileDTO" parameterType="BoardFileDTO">
+  		SELECT * FROM QNAFILES WHERE FILENUM=#{fileNum}
+  	</select>
   	
+  	<delete id="fileDelete" parameterType="BoardFileDTO">
+  		DELETE QNAFILES WHERE FILENUM=#{fileNum}
+  	</delete>
+  	
+  	<delete id="fileDeleteAll" parameterType="BoardDTO">
+  		DELETE QNAFILES WHERE BOARDNUM=#{boardNum}
+  	</delete>
   
 	
   </mapper>

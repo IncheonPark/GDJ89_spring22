@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.boards.BoardDTO;
+import com.winter.app.boards.BoardFileDTO;
 import com.winter.app.boards.notice.NoticeDTO;
 import com.winter.app.pages.Pager;
 import com.winter.app.users.UserDTO;
@@ -85,8 +86,8 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public String update(BoardDTO boardDTO)throws Exception{
-		int result =  qnaService.update(boardDTO);
+	public String update(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session)throws Exception{
+		int result =  qnaService.update(boardDTO, attaches, session);
 		
 		//return "redirect:./list";
 		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
@@ -94,8 +95,8 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value="delete", method = RequestMethod.GET)
-	public String delete(BoardDTO boardDTO, Model model)throws Exception{
-		int result = qnaService.delete(boardDTO);
+	public String delete(BoardDTO boardDTO, Model model, HttpSession session)throws Exception{
+		int result = qnaService.delete(boardDTO, session);
 		String s = "삭제 실패";
 		if(result>0) {
 			s = "삭제 성공";
@@ -123,6 +124,14 @@ public class QnaController {
 		return "redirect:./list";
 	}
 	
+	
+	@RequestMapping(value = "fileDelete", method = RequestMethod.POST)
+	public String fileDelete(BoardFileDTO boardFileDTO, Model model, HttpSession session)throws Exception{
+		int result = qnaService.fileDelete(boardFileDTO, session);
+		model.addAttribute("result", result);
+		return "commons/ajaxResult";
+		
+	}
 
 }
 

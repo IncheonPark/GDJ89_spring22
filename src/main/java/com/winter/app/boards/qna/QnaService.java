@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.winter.app.boards.BoardDTO;
 import com.winter.app.boards.BoardFileDTO;
 import com.winter.app.boards.BoardService;
+import com.winter.app.boards.notice.NoticeDTO;
 import com.winter.app.files.FileManger;
 import com.winter.app.pages.Pager;
 
@@ -52,12 +53,41 @@ public class QnaService implements BoardService{
 		return result;
 	}
 	
-	public int update(BoardDTO boardDTO)throws Exception{
-		return qnaDAO.update(boardDTO);
+	public int update(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session)throws Exception{
+		int result = qnaDAO.update(boardDTO);
+		
+		for(MultipartFile attach: attaches) {
+			if(attach.isEmpty()) {
+				continue;
+			}
+			BoardFileDTO boardFileDTO = this.fileSave(attach, session.getServletContext());
+			//DB에 저장
+			//
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = qnaDAO.addFile(boardFileDTO);
+		}
+		return result;
 	}
 	
-	public int delete(BoardDTO boardDTO)throws Exception{
-		return qnaDAO.delete(boardDTO);
+	public int delete(BoardDTO boardDTO, HttpSession session)throws Exception{
+		//1. 파일들의 정보를 조회
+		boardDTO=qnaDAO.getDetail(boardDTO);
+		int result= qnaDAO.fileDeleteAll(boardDTO);
+		result= qnaDAO.delete(boardDTO);
+		
+		//3. HDD 삭제
+		 if(result>0) {
+			 String path = session.getServletContext().getRealPath("/resources/images/qna/");
+			 System.out.println(path);
+			 
+			 for(BoardFileDTO boardFileDTO: ((QnaDTO)boardDTO).getBoardFileDTOs()) {
+				 fileManger.fileDelete(path, boardFileDTO.getFileName());
+			 }
+		 }
+		
+		
+		
+		return result;
 	}
 	
 	public int reply(QnaDTO boardDTO)throws Exception{
@@ -77,6 +107,23 @@ public class QnaService implements BoardService{
 		result = qnaDAO.reply(boardDTO);
 		
 		return result;
+	}
+	
+	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session)throws Exception{
+		
+		//1.정보 조회
+		 boardFileDTO = qnaDAO.getFileDetail(boardFileDTO);
+		//2.DB삭제
+		 int result = qnaDAO.fileDelete(boardFileDTO);
+		 
+		//3. HDD 삭제
+		 if(result>0) {
+			 String path = session.getServletContext().getRealPath("/resources/images/qna/");
+			 System.out.println(path);
+			 fileManger.fileDelete(path, boardFileDTO.getFileName());
+		 }
+		
+		 return result;
 	}
 	
 	private BoardFileDTO fileSave(MultipartFile attach, ServletContext servletContext)throws Exception{
