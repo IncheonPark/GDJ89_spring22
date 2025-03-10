@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.boards.BoardDTO;
+import com.winter.app.boards.BoardFileDTO;
 import com.winter.app.pages.Pager;
 import com.winter.app.users.UserDTO;
 
@@ -104,5 +105,14 @@ public class NoticeController {
 		return "commons/result";
 		
 	}
+	
+	@RequestMapping(value = "fileDelete", method = RequestMethod.POST)
+	public String fileDelete(BoardFileDTO boardFileDTO)throws Exception{
+		System.out.println(boardFileDTO.getFileNum());
+		return "";
+		
+	}
+	
+	
 
 }
