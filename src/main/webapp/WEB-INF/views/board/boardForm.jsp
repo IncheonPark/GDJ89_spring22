@@ -48,8 +48,8 @@
 		</form>	
 	</div>
 </div>
-<script src="/resources/js/files/fileManger.js"></script>
-<script src="/resources/js/files/fileDelete.js"></script>
+<script type="module" src="/resources/js/files/fileManger.js"></script>
+<!-- <script src="/resources/js/files/fileDelete.js"></script> -->
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>
