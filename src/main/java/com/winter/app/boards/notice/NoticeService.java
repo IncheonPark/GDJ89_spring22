@@ -110,6 +110,10 @@ public class NoticeService implements BoardService{
 		 return result;
 	}
 	
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO)throws Exception{
+		return noticeDAO.getFileDetail(boardFileDTO);
+	}
+	
 	private BoardFileDTO fileSave(MultipartFile attach, ServletContext servletContext)throws Exception{
 		//1. 어디에 저장할 것인가??
 		String path = servletContext.getRealPath("/resources/images/notice/");
