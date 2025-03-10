@@ -10,6 +10,14 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileManger {
 	
+	public void fileDelete(String path, String fileName)throws Exception{
+		File file = new File(path, fileName);
+		if(file.exists()) {
+			boolean check = file.delete();
+		}
+		
+	}
+	
 	public String fileSave(String path, MultipartFile profile)throws Exception{
 		File file = new File(path);
 		

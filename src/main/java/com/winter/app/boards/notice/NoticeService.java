@@ -63,6 +63,23 @@ public class NoticeService implements BoardService{
 		return noticeDAO.delete(boardDTO);
 	}
 	
+	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session)throws Exception{
+		
+		//1.정보 조회
+		 boardFileDTO = noticeDAO.getFileDetail(boardFileDTO);
+		//2.DB삭제
+		 int result = noticeDAO.fileDelete(boardFileDTO);
+		 
+		//3. HDD 삭제
+		 if(result>0) {
+			 String path = session.getServletContext().getRealPath("/resources/images/notice/");
+			 System.out.println(path);
+			 fileManger.fileDelete(path, boardFileDTO.getFileName());
+		 }
+		
+		 return result;
+	}
+	
 	private BoardFileDTO fileSave(MultipartFile attach, ServletContext servletContext)throws Exception{
 		//1. 어디에 저장할 것인가??
 		String path = servletContext.getRealPath("/resources/images/notice/");

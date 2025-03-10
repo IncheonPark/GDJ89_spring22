@@ -66,6 +66,14 @@
   		WHERE BOARDNUM=#{boardNum}
   	</update>
   	
+  	<select id="getFileDetail" resultType="BoardFileDTO" parameterType="BoardFileDTO">
+  		SELECT * FROM NOTICEFILES WHERE FILENUM=#{fileNum}
+  	</select>
+  	
+  	<delete id="fileDelete" parameterType="BoardFileDTO">
+  		DELETE NOTICEFILES WHERE FILENUM=#{fileNum}
+  	</delete>
+  	
   	
   
 	

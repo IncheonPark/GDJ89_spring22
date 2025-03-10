@@ -107,9 +107,10 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "fileDelete", method = RequestMethod.POST)
-	public String fileDelete(BoardFileDTO boardFileDTO)throws Exception{
-		System.out.println(boardFileDTO.getFileNum());
-		return "";
+	public String fileDelete(BoardFileDTO boardFileDTO, Model model, HttpSession session)throws Exception{
+		int result = noticeService.fileDelete(boardFileDTO, session);
+		model.addAttribute("result", result);
+		return "commons/ajaxResult";
 		
 	}
 	

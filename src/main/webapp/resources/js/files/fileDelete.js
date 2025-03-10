@@ -21,6 +21,21 @@ for (let f of file_delete){
             body: `fileNum=${num}` //'fileNum='+num
 
         })
+        .then(r => r.text())
+        .then(r => {
+            if(r.trim()*1>0){
+                //1.파일갯수 count 수 수정
+                //count--;
+                //2. Element 삭제
+                f.parentElement.remove()
+            }else {
+                alert('파일 삭제 실패');    
+            }
+        })
+        .catch(e => {
+            alert('파일 삭제 오류');
+        })
+        
 
         
        }
