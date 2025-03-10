@@ -84,8 +84,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public String update(BoardDTO boardDTO)throws Exception{
-		int result =  noticeService.update(boardDTO);
+	public String update(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session)throws Exception{
+		int result =  noticeService.update(boardDTO, attaches, session);
 		
 		//return "redirect:./list";
 		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();

@@ -55,8 +55,21 @@ public class NoticeService implements BoardService{
 		return result;
 	}
 	
-	public int update(BoardDTO boardDTO)throws Exception{
-		return noticeDAO.update(boardDTO);
+	public int update(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session)throws Exception{
+		int result = noticeDAO.update(boardDTO);
+		
+		for(MultipartFile attach: attaches) {
+			if(attach.isEmpty()) {
+				continue;
+			}
+			BoardFileDTO boardFileDTO = this.fileSave(attach, session.getServletContext());
+			//DB에 저장
+			//
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = noticeDAO.addFile(boardFileDTO);
+		}
+		return result;
+		
 	}
 	
 	public int delete(BoardDTO boardDTO)throws Exception{
