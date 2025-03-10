@@ -72,8 +72,25 @@ public class NoticeService implements BoardService{
 		
 	}
 	
-	public int delete(BoardDTO boardDTO)throws Exception{
-		return noticeDAO.delete(boardDTO);
+	public int delete(BoardDTO boardDTO, HttpSession session)throws Exception{
+		//1. 파일들의 정보를 조회
+		boardDTO=noticeDAO.getDetail(boardDTO);
+		int result= noticeDAO.fileDeleteAll(boardDTO);
+		result= noticeDAO.delete(boardDTO);
+		
+		//3. HDD 삭제
+		 if(result>0) {
+			 String path = session.getServletContext().getRealPath("/resources/images/notice/");
+			 System.out.println(path);
+			 
+			 for(BoardFileDTO boardFileDTO: ((NoticeDTO)boardDTO).getBoardFileDTOs()) {
+				 fileManger.fileDelete(path, boardFileDTO.getFileName());
+			 }
+		 }
+		
+		
+		
+		return result;
 	}
 	
 	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session)throws Exception{

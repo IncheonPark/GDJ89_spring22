@@ -93,8 +93,8 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="delete", method = RequestMethod.GET)
-	public String delete(BoardDTO boardDTO, Model model)throws Exception{
-		int result = noticeService.delete(boardDTO);
+	public String delete(BoardDTO boardDTO, Model model, HttpSession session)throws Exception{
+		int result = noticeService.delete(boardDTO, session);
 		String s = "삭제 실패";
 		if(result>0) {
 			s = "삭제 성공";
