@@ -9,6 +9,7 @@ const addCart= document.getElementById("addCart")
 const addComments = document.getElementById("addComments");
 const commentsContents = document.getElementById("commentsContents");
 const commentsListResult = document.getElementById("commentsListResult");
+const pages = document.getElementsByClassName("pages");
 
 
 addCart.addEventListener("click", ()=>{
@@ -57,24 +58,14 @@ del.addEventListener("click", function(){
 })
 
 //------------- 등록 버튼 ----------------------
-addComments.addEventListener("click", ()=>{
+addComments.addEventListener("click", async ()=>{
     console.log(commentsContents.value);
     console.log(addCart.getAttribute("data-product-num"));
-    let pn = addCart.getAttribute("data-product-num");
-
-    //let p = makeParam(pn, commentsContents.value);
-    let p = makeForm(pn, commentsContents.value)
+    
+    await add()
+    await getList(1)
 
    
-
-    fetch('./addComments', {
-        method:'POST',
-        // headers: {
-        //     "Content-type":"application/x-www-form-urlencoded; charset=UTF-8"
-        // },
-        //body: `productNum=${pn}&boardContents=${commentsContents.value}`
-        body:p
-    })
 
 })
 
@@ -95,11 +86,11 @@ function makeParam(pn, contents){
     return p;
 }
 
-getList()
+getList(1)
 
-function getList(){
+async function getList(page){
     let pn = addCart.getAttribute("data-product-num");
-    fetch(`listComments?productNum=${pn}`)
+    fetch(`listComments?productNum=${pn}&page=${page}`)
     .then(r => r.text())
     .then(r => {
         commentsListResult.innerHTML=r;
@@ -107,3 +98,43 @@ function getList(){
     .catch(e=> console.log(e))
     
 }
+
+async function add(){
+    let pn = addCart.getAttribute("data-product-num");
+
+    //let p = makeParam(pn, commentsContents.value);
+    let p = makeForm(pn, commentsContents.value)
+
+   
+
+    fetch('./addComments', {
+        method:'POST',
+        // headers: {
+        //     "Content-type":"application/x-www-form-urlencoded; charset=UTF-8"
+        // },
+        //body: `productNum=${pn}&boardContents=${commentsContents.value}`
+        body:p
+    })
+    .then(r=>r.text())
+    .then(r=>{
+        //getList()
+        if(r.trim()*1>0){
+
+        }else {
+
+        }
+
+        commentsContents.value="";
+
+    })
+    .catch(e =>{
+        alert('에러 발생')
+    })
+}
+
+commentsListResult.addEventListener('click', (e)=>{
+    if(e.target.classList.contains('pages')){
+        let p = e.target.getAttribute("data-page-num");
+        getList(p)
+    }
+})

@@ -98,13 +98,17 @@ public class ProductController {
 	//------------------ Comments ------------------------
 	//addComments
 	@RequestMapping(value = "addComments", method = RequestMethod.POST)
-	public void addComments(CommentsDTO commentsDTO, HttpSession session)throws Exception{
+	public String addComments(CommentsDTO commentsDTO, HttpSession session, Model model)throws Exception{
 		
 		
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		commentsDTO.setUserName(userDTO.getUserName());
 		
 		int result = productService.addComments(commentsDTO);
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
 	}
 	
 	//listComments
