@@ -56,6 +56,11 @@ public class ProductDAO {
 		return sqlSession.selectOne(NAMESPACE+"test2");
 	}
 	
+	//----------------------- Comments ----------------
+	public int addComments(CommentsDTO commentsDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addComments", commentsDTO);
+	}
+	
 	
 	
 	

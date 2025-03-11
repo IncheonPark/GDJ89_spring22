@@ -3,6 +3,7 @@ package com.winter.app.products;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.winter.app.boards.CommentDTO;
 import com.winter.app.pages.Pager;
+import com.winter.app.users.UserDTO;
 
 @Controller
 @RequestMapping(value = "/products/*")
@@ -90,6 +93,18 @@ public class ProductController {
 	public void delete(ProductDTO productDTO, Model model)throws Exception{
 		productDTO = productService.getDetail(productDTO);
 		model.addAttribute("dto", productDTO);
+	}
+	
+	//------------------ Comments ------------------------
+	//addComments
+	@RequestMapping(value = "addComments", method = RequestMethod.POST)
+	public void addComments(CommentsDTO commentsDTO, HttpSession session)throws Exception{
+		
+		
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		commentsDTO.setUserName(userDTO.getUserName());
+		
+		int result = productService.addComments(commentsDTO);
 	}
 	
 	

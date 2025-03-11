@@ -80,6 +80,15 @@
   		VALUES (PRODUCT_SEQ.NEXTVAL, #{productName},#{productRate},#{productDate}, #{productDetail})
   	</insert>
   	
+  	<!--  Comments -->
+  	
+  	<insert id="addComments" parameterType="CommentsDTO">
+  		INSERT INTO COMMENTS 
+			(BOARDNUM, BOARDCONTENTS, BOARDDATE, USERNAME, PRODUCTNUM)
+		VALUES 
+			(BOARD_SEQ.NEXTVAL,#{boardContents}, sysdate, #{userName}, #{productNum})
+  	</insert>
+  	
   	
   	
   	

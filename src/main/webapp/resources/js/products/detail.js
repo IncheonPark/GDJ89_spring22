@@ -6,6 +6,9 @@ const up = document.getElementById("up");
 const del = document.getElementById("del");
 const frm = document.getElementById("frm");
 const addCart= document.getElementById("addCart")
+const addComments = document.getElementById("addComments");
+const commentsContents = document.getElementById("commentsContents");
+
 
 addCart.addEventListener("click", ()=>{
     let num = addCart.getAttribute("data-product-num")
@@ -51,3 +54,42 @@ del.addEventListener("click", function(){
         frm.submit();
     }
 })
+
+//------------- 등록 버튼 ----------------------
+addComments.addEventListener("click", ()=>{
+    console.log(commentsContents.value);
+    console.log(addCart.getAttribute("data-product-num"));
+    let pn = addCart.getAttribute("data-product-num");
+
+    //let p = makeParam(pn, commentsContents.value);
+    let p = makeForm(pn, commentsContents.value)
+
+   
+
+    fetch('./addComments', {
+        method:'POST',
+        // headers: {
+        //     "Content-type":"application/x-www-form-urlencoded; charset=UTF-8"
+        // },
+        //body: `productNum=${pn}&boardContents=${commentsContents.value}`
+        body:p
+    })
+
+})
+
+function makeForm(pn, contents){
+    let f = new FormData();
+    f.append("productNum", pn);
+    f.append("boardContents", contents)
+
+    return f;
+}
+
+function makeParam(pn, contents){
+
+    let p = new URLSearchParams();
+    p.append("productNum", pn);
+    p.append("boardContents", contents)
+
+    return p;
+}

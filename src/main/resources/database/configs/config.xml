@@ -11,6 +11,7 @@
 		<typeAlias type="com.winter.app.users.UserDTO" alias="UserDTO"/>
 		<typeAlias type="com.winter.app.users.UserFileDTO" alias="UserFileDTO"/>
 		<typeAlias type="com.winter.app.products.ProductDTO" alias="ProductDTO"/>
+		<typeAlias type="com.winter.app.products.CommentsDTO" alias="CommentsDTO"/>
 		<typeAlias type="com.winter.app.boards.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.winter.app.boards.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.winter.app.boards.notice.NoticeDTO" alias="NoticeDTO"/>

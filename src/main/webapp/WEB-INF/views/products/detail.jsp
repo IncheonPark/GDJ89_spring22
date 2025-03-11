@@ -19,7 +19,7 @@
 		<h3>${dto.productName}</h3>
 		<h3>${dto.productRate}</h3>
 		
-		<div>
+		<div class="mb-3">
 			<form id="frm" action="/test">
 				<input type="hidden" name="productNum" value="${dto.productNum}">
 				<button type="button" id="up">수정</button>
@@ -29,6 +29,14 @@
 
 		</div>
 
+		<div class="mb-3">
+			<div class="mb-3">
+				<label for="commentsContents" class="form-label">댓글</label>
+				<textarea class="form-control" id="commentsContents" rows="3"></textarea>
+				<button type="button" class="btn btn-outline-primary mt-3" id="addComments"  data-product-num="${dto.productNum}">등록</button>
+			</div>
+		</div>
+
 	</div>
 </div>
 
@@ -36,6 +44,6 @@
 
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
-<script src="../resources/js/detail.js"></script>
+<script src="../resources/js/products/detail.js"></script>
 </body>
 </html>

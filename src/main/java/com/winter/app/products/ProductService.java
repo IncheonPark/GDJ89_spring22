@@ -49,6 +49,11 @@ public class ProductService {
 		return productDAO.add(productDTO);
 		
 	}
+	
+	//------------------ Comments ------------------
+	public int addComments(CommentsDTO commentsDTO)throws Exception{
+		return productDAO.addComments(commentsDTO);
+	}
 
 }
 
