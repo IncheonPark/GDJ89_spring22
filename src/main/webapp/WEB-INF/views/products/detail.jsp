@@ -37,6 +37,10 @@
 			</div>
 		</div>
 
+		<div class="mb-3" id="commentsListResult">
+
+		</div>
+
 	</div>
 </div>
 

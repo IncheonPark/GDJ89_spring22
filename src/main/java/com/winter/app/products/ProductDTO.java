@@ -14,6 +14,7 @@ public class ProductDTO {
 	private Date productDate;
 	private String productDetail;
 	
+	
 	public Long getProductNum() {
 		return productNum;
 	}

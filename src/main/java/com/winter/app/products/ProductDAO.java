@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.winter.app.boards.CommentDTO;
 import com.winter.app.pages.Pager;
 
 @Repository
@@ -59,6 +60,14 @@ public class ProductDAO {
 	//----------------------- Comments ----------------
 	public int addComments(CommentsDTO commentsDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"addComments", commentsDTO);
+	}
+	
+	public List<CommentsDTO> getCommentsList(Map<String, Object> map)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getCommentsList", map);
+	}
+	
+	public Long getCommentsTotalCount(CommentsDTO commentsDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCommentsTotalCount", commentsDTO);
 	}
 	
 	

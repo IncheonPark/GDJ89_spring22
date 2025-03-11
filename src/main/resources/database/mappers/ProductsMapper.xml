@@ -89,6 +89,25 @@
 			(BOARD_SEQ.NEXTVAL,#{boardContents}, sysdate, #{userName}, #{productNum})
   	</insert>
   	
+  	<!-- getCommentsList -->
+  	<select id="getCommentsList" resultType="CommentsDTO" parameterType="Map">
+  		
+  		SELECT * FROM
+  		(
+	  		SELECT ROWNUM R, C.* FROM
+	  		(
+	  			SELECT * FROM COMMENTS
+	  			WHERE PRODUCTNUM=#{comments.productNum}
+	  			ORDER BY BOARDNUM DESC
+	  		)C
+  		)
+  		WHERE R BETWEEN #{pager.startNum} AND #{pager.endNum}
+  	</select>
+  	
+  	<select id="getCommentsTotalCount" parameterType="CommentsDTO" resultType="Long">
+  		SELECT COUNT(BOARDNUM) FROM COMMENTS WHERE PRODUCTNUM=#{productNum}
+  	</select>
+  	
   	
   	
   	

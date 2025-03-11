@@ -8,6 +8,7 @@ const frm = document.getElementById("frm");
 const addCart= document.getElementById("addCart")
 const addComments = document.getElementById("addComments");
 const commentsContents = document.getElementById("commentsContents");
+const commentsListResult = document.getElementById("commentsListResult");
 
 
 addCart.addEventListener("click", ()=>{
@@ -92,4 +93,17 @@ function makeParam(pn, contents){
     p.append("boardContents", contents)
 
     return p;
+}
+
+getList()
+
+function getList(){
+    let pn = addCart.getAttribute("data-product-num");
+    fetch(`listComments?productNum=${pn}`)
+    .then(r => r.text())
+    .then(r => {
+        commentsListResult.innerHTML=r;
+    })
+    .catch(e=> console.log(e))
+    
 }

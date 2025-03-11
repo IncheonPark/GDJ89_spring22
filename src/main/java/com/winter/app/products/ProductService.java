@@ -1,7 +1,9 @@
 package com.winter.app.products;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +55,18 @@ public class ProductService {
 	//------------------ Comments ------------------
 	public int addComments(CommentsDTO commentsDTO)throws Exception{
 		return productDAO.addComments(commentsDTO);
+	}
+	
+	public List<CommentsDTO> getCommentsList(CommentsDTO commentsDTO, Pager pager)throws Exception{
+	
+		pager.make(productDAO.getCommentsTotalCount(commentsDTO));
+		
+		pager.makeNum();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("comments", commentsDTO);
+		map.put("pager", pager);
+		return productDAO.getCommentsList(map);
 	}
 
 }

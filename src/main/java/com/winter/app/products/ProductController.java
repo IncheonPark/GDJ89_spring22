@@ -107,6 +107,19 @@ public class ProductController {
 		int result = productService.addComments(commentsDTO);
 	}
 	
+	//listComments
+	@RequestMapping(value="listComments", method = RequestMethod.GET)
+	public String listComments(Pager pager, CommentsDTO commentsDTO, Model model)throws Exception{
+		System.out.println("comments list");
+		
+		List<CommentsDTO> ar = productService.getCommentsList(commentsDTO, pager);
+		
+		model.addAttribute("list", ar);
+		
+		return "commons/commentsList";
+	}
+	
+	
 	
 
 
