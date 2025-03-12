@@ -16,6 +16,9 @@
 		<!-- contents 내용 작성 -->
 		<h1>Product Detail Page</h1>
 		
+		<div>
+		${dto.productDetail}
+		</div>
 		<h3>${dto.productName}</h3>
 		<h3>${dto.productRate}</h3>
 		

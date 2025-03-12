@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.winter.app.boards.CommentDTO;
@@ -82,6 +83,18 @@ public class ProductController {
 		mv.setViewName("redirect:./list");
 		return mv;
 	}
+	
+	@RequestMapping(value = "detailFiles", method = RequestMethod.POST)
+	public String detailFiles (MultipartFile uploadFile,HttpSession session, Model model)throws Exception{
+		String fileName = productService.detailFiles(session, uploadFile);
+		
+		fileName = "/resources/images/products/"+fileName;
+		
+		model.addAttribute("result", fileName);
+		
+		return "commons/ajaxResult";
+	}
+	
 	
 	@RequestMapping(value = "update", method = RequestMethod.GET)
 	public void update(ProductDTO productDTO, Model model)throws Exception{

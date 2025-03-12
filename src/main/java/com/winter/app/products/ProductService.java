@@ -5,9 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.files.FileManger;
 import com.winter.app.pages.Pager;
 
 @Service
@@ -16,7 +20,8 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 
-	private static Long count=0L;
+	@Autowired
+	private FileManger fileManger;
 	
 	//detail
 	public ProductDTO getDetail(ProductDTO productDTO)throws Exception{
@@ -52,6 +57,15 @@ public class ProductService {
 		
 	}
 	
+	public String detailFiles(HttpSession session, MultipartFile files)throws Exception{
+		String path = session.getServletContext().getRealPath("/resources/images/products/");
+		System.out.println(path);
+		String fileName = fileManger.fileSave(path, files);
+		return fileName;
+		
+	}
+	
+	
 	//------------------ Comments ------------------
 	public int addComments(CommentsDTO commentsDTO)throws Exception{
 		return productDAO.addComments(commentsDTO);
@@ -76,6 +90,8 @@ public class ProductService {
 	public int updateComments(CommentsDTO commentsDTO)throws Exception{
 		return productDAO.updateComments(commentsDTO);
 	}
+	
+	
 
 }
 
