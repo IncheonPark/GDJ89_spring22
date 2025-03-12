@@ -68,6 +68,14 @@ public class ProductService {
 		map.put("pager", pager);
 		return productDAO.getCommentsList(map);
 	}
+	
+	public int deleteComments(CommentsDTO commentsDTO)throws Exception{
+		return productDAO.deleteComments(commentsDTO);
+	}
+	
+	public int updateComments(CommentsDTO commentsDTO)throws Exception{
+		return productDAO.updateComments(commentsDTO);
+	}
 
 }
 

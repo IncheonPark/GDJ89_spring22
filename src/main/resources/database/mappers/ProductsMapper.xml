@@ -108,6 +108,16 @@
   		SELECT COUNT(BOARDNUM) FROM COMMENTS WHERE PRODUCTNUM=#{productNum}
   	</select>
   	
+  	<delete id="deleteComments" parameterType="CommentsDTO">
+  		DELETE COMMENTS WHERE BOARDNUM=#{boardNum}
+  	</delete>
+  	
+  	 <delete id="updateComments" parameterType="CommentsDTO">
+  		UPDATE COMMENTS 
+  		SET BOARDCONTENTS=#{boardContents} 
+  		WHERE BOARDNUM=#{boardNum}
+  	</delete>
+  	
   	
   	
   	

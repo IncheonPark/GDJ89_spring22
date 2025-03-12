@@ -123,6 +123,20 @@ public class ProductController {
 		return "commons/commentsList";
 	}
 	
+	@RequestMapping(value = "deleteComments", method = RequestMethod.POST)
+	public String deleteComments(CommentsDTO commentsDTO, Model model)throws Exception{
+		int result = productService.deleteComments(commentsDTO);
+		model.addAttribute("result", result);
+		return "commons/ajaxResult";
+	}
+	
+	@RequestMapping(value = "updateComments", method = RequestMethod.POST)
+	public String updateComments(CommentsDTO commentsDTO, Model model)throws Exception{
+		int result = productService.updateComments(commentsDTO);
+		model.addAttribute("result", result);
+		return "commons/ajaxResult";
+	}
+	
 	
 	
 
