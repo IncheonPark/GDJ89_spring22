@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.winter.app.boards.CommentDTO;
+import com.winter.app.files.FileDTO;
 import com.winter.app.pages.Pager;
 import com.winter.app.users.UserDTO;
 
@@ -92,6 +93,15 @@ public class ProductController {
 		
 		model.addAttribute("result", fileName);
 		
+		return "commons/ajaxResult";
+	}
+	
+	@RequestMapping(value = "detailFilesDelete", method = RequestMethod.POST)
+	public String detailFilesDelete (FileDTO fileDTO,HttpSession session, Model model)throws Exception{
+		System.out.println(fileDTO.getFileName());
+		//model.addAttribute("result", fileName);
+		productService.detailFilesDelete(fileDTO, session);
+		model.addAttribute("result", 1);
 		return "commons/ajaxResult";
 	}
 	

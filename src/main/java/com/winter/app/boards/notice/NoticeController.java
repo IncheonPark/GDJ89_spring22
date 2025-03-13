@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,10 +25,12 @@ import com.winter.app.users.UserDTO;
 public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
+	@Value("${notice.kind}")
+	private String kind;
 	
 	@ModelAttribute("kind")
 	public String getKind() {
-		return "notice";
+		return this.kind;
 	}
 	
 	@RequestMapping(value="list", method = RequestMethod.GET)

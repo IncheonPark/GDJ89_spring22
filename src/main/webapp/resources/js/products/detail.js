@@ -63,8 +63,8 @@ addComments.addEventListener("click", async ()=>{
     console.log(commentsContents.value);
     console.log(addCart.getAttribute("data-product-num"));
     
-    await add()
-    await getList(1)
+    await add();
+    await getList(1);
 
    
 

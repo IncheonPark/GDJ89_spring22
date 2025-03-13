@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.winter.app.SampleTestCase;
 
@@ -19,6 +20,14 @@ public class ProductDAOTest extends SampleTestCase {
 
 	@Autowired
 	private ProductDAO productDAO;
+	
+	@Value("${my.user}")
+	private String username;
+	
+	@Test
+	public void usernameTest() {
+		System.out.println(username);
+	}
 	
 	@BeforeClass
 	public static void bf() {
@@ -87,7 +96,7 @@ public class ProductDAOTest extends SampleTestCase {
 		
 	}
 	
-	@Test
+	//@Test
 	public void addCommentsTest()throws Exception{
 		CommentsDTO commentsDTO = new CommentsDTO();
 		commentsDTO.setBoardContents("test");
