@@ -109,7 +109,7 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "reply", method = RequestMethod.GET)
-	public String reply(@ModelAttribute("dto") BoardDTO boardDTO)throws Exception{
+	public String reply(@ModelAttribute("dto") QnaDTO boardDTO)throws Exception{
 		return "board/boardForm";
 	}
 	

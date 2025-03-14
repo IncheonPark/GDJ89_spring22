@@ -52,9 +52,13 @@
 	
 		
 		<div>
+			<c:if test="${dto.userName eq user.userName}">
 			<a href="./update?boardNum=${dto.boardNum}" class="btn btn-outline-success">수정</a>
 			<a href="./delete?boardNum=${dto.boardNum}" class="btn btn-outline-danger">삭제</a>
+			</c:if>
+			<c:if test="${kind ne 'notice'}">
 			<a href="./reply?boardNum=${dto.boardNum}" class="btn btn-outline-primary">답글</a>
+			</c:if>
 		</div>		
 		
 	</div>
