@@ -1,5 +1,6 @@
 package com.winter.app.users;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,8 +72,16 @@ public class UserController {
 	public void login()throws Exception{}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(UserDTO userDTO, HttpSession session, Model model)throws Exception{
+	public String login(UserDTO userDTO, HttpSession session, Model model){
+		
+		try {
 		userDTO = userService.login(userDTO);
+		}catch (Exception e) {
+			model.addAttribute("result", e.getMessage());
+			return "users/login";
+		}
+		
+		
 		if(userDTO != null) {
 			session.setAttribute("user", userDTO);
 			return "redirect:../";
@@ -156,6 +166,15 @@ public class UserController {
 		model.addAttribute("result", result);
 		
 		return "commons/ajaxResult";
+		
+	}
+	
+	@ExceptionHandler(NullPointerException.class)
+	public String error1() {
+		
+		
+		
+		return "errors/error_500";	
 		
 	}
 	

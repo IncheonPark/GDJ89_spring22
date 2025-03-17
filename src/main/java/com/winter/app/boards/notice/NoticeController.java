@@ -38,6 +38,9 @@ public class NoticeController {
 		System.out.println("Notice List");
 		List<BoardDTO> ar= noticeService.getList(pager);
 		model.addAttribute("list", ar);
+		ar = null;
+		
+		
 		if(ar.size() != 0) {
 			
 			throw new Exception();

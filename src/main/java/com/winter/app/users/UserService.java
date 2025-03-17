@@ -54,6 +54,13 @@ public class UserService {
 			if(result.getPassword().equals(userDTO.getPassword())) {
 				return result;
 			}
+			
+			throw new UsernameException("비번 틀렸다");
+			
+		}
+		
+		if(result ==null) {
+			throw new UsernameException("아이디가 틀렸다");
 		}
 		
 		return null;

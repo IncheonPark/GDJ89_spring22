@@ -15,6 +15,7 @@
 	<div class="row col-md-8 offset-md-2">
 		<!-- contents 내용 작성 -->
 		<h1>로그인</h1>
+		<h3>${result}</h3>
 		<form id="login_form" action="./login" method="post">
 		  <div class="mb-3">
 		    <label for="userName" class="form-label">USERNAME</label>
